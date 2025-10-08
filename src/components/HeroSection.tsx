@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/sem poste.png";
 import { Badge } from "@/components/ui/badge";
+
+// Usando uma imagem que já sabemos que funciona para garantir a base
+import heroImage from "@/assets/hero-wine-elegant.jpg";
 
 const HeroSection = () => {
     return (
@@ -8,12 +10,11 @@ const HeroSection = () => {
             className="relative min-h-screen flex items-center justify-center text-center bg-cover bg-center"
             style={{ backgroundImage: `url(${heroImage})` }}
         >
-            {/* Overlay escuro para garantir contraste em toda a imagem */}
-            <div className="absolute inset-0 bg-black/35" />
+            {/* Overlay escuro para garantir contraste */}
+            <div className="absolute inset-0 bg-black/50" />
 
-            {/* Contêiner para os elementos flutuantes */}
+            {/* Conteúdo */}
             <div className="relative z-10 flex flex-col items-center space-y-8 animate-fade-in-up p-4 w-full">
-                {/* Plataforma de Vidro para o Conteúdo Principal */}
                 <div className="glass w-full max-w-4xl p-8 md:p-12 rounded-3xl bg-gradient-to-b from-black/40 to-black/20">
                     <Badge
                         variant="outline"
@@ -27,7 +28,6 @@ const HeroSection = () => {
                     </h1>
                 </div>
 
-                {/* Botão de Ação Flutuante */}
                 <a
                     href="https://preview--winecup-reserve-now.lovable.app/cadastro-reserva"
                     target="_blank"
