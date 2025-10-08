@@ -1,5 +1,4 @@
 import * as React from "react";
-// MUDANÇA AQUI: Importando do nosso novo componente customizado
 import {
     Carousel,
     CarouselContent,
@@ -11,7 +10,6 @@ import {
 import { Instagram, Volume2, VolumeX } from "lucide-react";
 import { Button } from "./ui/button";
 
-// Seus vídeos
 import video1 from "@/assets/wine-moment-1.mp4";
 import video2 from "@/assets/wine-moment-2.mp4";
 import video3 from "@/assets/wine-moment-3.mp4";
@@ -37,28 +35,19 @@ const VideoCarousel = () => {
     };
 
     return (
-        <section className="py-24 bg-gradient-to-b from-background to-cream/20">
+        <section id="momentos" className="py-16 bg-gradient-to-b from-background to-cream/20 overflow-hidden">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-16 animate-fade-in-up">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-burgundy">
+                <div className="text-center mb-12 animate-fade-in-up">
+                    <h2 className="text-4xl md:text-5xl font-bold text-burgundy">
                         Momentos Wine Cup
                     </h2>
-                    <a
-                        href="https://www.instagram.com/winecupsantos/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-wine hover:text-wine-light transition-colors"
-                    >
-                        <Instagram className="w-6 h-6" />
-                        <span className="text-lg font-medium">@winecupsantos</span>
-                    </a>
                 </div>
 
                 <Carousel
                     setApi={setApi}
                     opts={{ loop: true, align: "center" }}
-                    // A classe 'carousel-overflow-visible' não é mais necessária
-                    className="relative w-full max-w-5xl mx-auto animate-fade-in-up animation-delay-300"
+                    // AQUI ESTÁ A MUDANÇA: O efeito de overflow só é ativado em telas 'md' ou maiores
+                    className="relative w-full max-w-5xl mx-auto animate-fade-in-up animation-delay-300 md:carousel-overflow-visible"
                 >
                     <CarouselContent>
                         {videos.map((videoSrc, index) => (
@@ -97,11 +86,11 @@ const VideoCarousel = () => {
                         ))}
                     </CarouselContent>
 
-                    <CarouselPrevious className="absolute left-0 md:-left-20 top-1/2 -translate-y-1/2 glass text-cream border-cream/50 hover:border-cream hover:bg-wine/20 z-20" />
-                    <CarouselNext className="absolute right-0 md:-right-20 top-1/2 -translate-y-1/2 glass text-cream border-cream/50 hover:border-cream hover:bg-wine/20 z-20" />
+                    <CarouselPrevious className="absolute left-2 md:-left-20 top-1/2 -translate-y-1/2 glass text-cream border-cream/50 hover:border-cream hover:bg-wine/20 z-20" />
+                    <CarouselNext className="absolute right-2 md:-right-20 top-1/2 -translate-y-1/2 glass text-cream border-cream/50 hover:border-cream hover:bg-wine/20 z-20" />
                 </Carousel>
 
-                <div className="text-center mt-12 animate-fade-in-up animation-delay-500">
+                <div className="text-center mt-8 animate-fade-in-up animation-delay-500">
                     <a
                         href="https://www.instagram.com/winecupsantos/"
                         target="_blank"
