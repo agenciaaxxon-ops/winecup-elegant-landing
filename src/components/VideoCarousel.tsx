@@ -21,17 +21,46 @@ const VideoCarousel = () => {
     const [current, setCurrent] = React.useState(0);
     const [isMuted, setIsMuted] = React.useState(true);
 
+    // Criamos referências para cada elemento de vídeo
+    const videoRefs = React.useRef<(HTMLVideoElement | null)[]>([]);
+
+    // Efeito para controlar o som quando o slide muda
     React.useEffect(() => {
         if (!api) return;
-        setCurrent(api.selectedScrollSnap());
-        api.on("select", () => {
-            setCurrent(api.selectedScrollSnap());
-        });
-    }, [api]);
 
+        const onSelect = () => {
+            const newCurrent = api.selectedScrollSnap();
+            setCurrent(newCurrent);
+
+            // Coloca todos os vídeos no mudo, exceto o atual
+            videoRefs.current.forEach((video, index) => {
+                if (video) {
+                    if (index === newCurrent) {
+                        video.muted = isMuted;
+                    } else {
+                        video.muted = true;
+                    }
+                }
+            });
+        };
+
+        onSelect(); // Executa na inicialização
+        api.on("select", onSelect);
+        return () => {
+            api.off("select", onSelect);
+        };
+    }, [api, isMuted]); // Adicionamos isMuted como dependência
+
+    // Função para alternar o som APENAS do vídeo ativo
     const toggleMute = (e: React.MouseEvent) => {
         e.stopPropagation();
-        setIsMuted(!isMuted);
+        const newMutedState = !isMuted;
+        setIsMuted(newMutedState);
+
+        const activeVideo = videoRefs.current[current];
+        if (activeVideo) {
+            activeVideo.muted = newMutedState;
+        }
     };
 
     return (
@@ -46,7 +75,6 @@ const VideoCarousel = () => {
                 <Carousel
                     setApi={setApi}
                     opts={{ loop: true, align: "center" }}
-                    // AQUI ESTÁ A MUDANÇA: O efeito de overflow só é ativado em telas 'md' ou maiores
                     className="relative w-full max-w-5xl mx-auto animate-fade-in-up animation-delay-300 md:carousel-overflow-visible"
                 >
                     <CarouselContent>
@@ -61,11 +89,14 @@ const VideoCarousel = () => {
                                 >
                                     <div className="relative glass rounded-3xl p-2">
                                         <video
+                                            // Adicionamos a ref para cada vídeo
+                                            ref={(el) => (videoRefs.current[index] = el)}
                                             src={videoSrc}
                                             className="w-full h-auto rounded-2xl aspect-[9/16] object-cover bg-black/50"
                                             autoPlay
                                             loop
-                                            muted={isMuted}
+                                            // Começa mudo por padrão para garantir o autoplay
+                                            muted
                                             playsInline
                                         />
                                         <Button

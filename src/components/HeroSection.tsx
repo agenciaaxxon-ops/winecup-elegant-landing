@@ -38,7 +38,11 @@ const HeroSection = () => {
                     ))}
                 </CarouselContent>
             </Carousel>
-
+            <div className="absolute top-24 left-1/2 -translate-x-1/2 z-10 hidden md:flex">
+                <p className="text-xs text-cream text-shadow-md">
+                    Dias e Horários: Quarta a Sábado 18:00 às 23:00  •  Domingo 13:00 às 20:00
+                </p>
+            </div>
             {/* Overlay escuro para garantir contraste */}
             <div className="absolute inset-0 bg-black/50" />
 
