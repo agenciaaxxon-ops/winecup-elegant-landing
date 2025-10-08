@@ -7,9 +7,9 @@ import {
     CarouselPrevious,
     type CarouselApi,
 } from "@/components/ui/carousel";
-import interior1 from "@/assets/interior-1.jpg";
-import interior2 from "@/assets/interior-2.jpg";
-import interior3 from "@/assets/interior-3.jpg";
+import interior1 from "@/assets/foto-1.png";
+import interior2 from "@/assets/foto-2.png";
+import interior3 from "@/assets/foto-3.png";
 
 const images = [interior1, interior2, interior3];
 const imageAlts = [

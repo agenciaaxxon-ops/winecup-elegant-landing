@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import eventsImage from "@/assets/events-background.jpg";
-import reservationsImage from "@/assets/reservations-background.jpg";
+import eventsImage from "@/assets/foto-1.png";
+import reservationsImage from "@/assets/foto-2.png";
 
 const EventsReservations = () => {
     return (

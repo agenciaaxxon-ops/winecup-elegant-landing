@@ -1,4 +1,4 @@
-import gourmetDish from "@/assets/gourmet-dish.jpg";
+import gourmetDish from "@/assets/foto-4.png";
 
 const AboutSection = () => {
     return (

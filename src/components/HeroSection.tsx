@@ -8,9 +8,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-import heroImage1 from "@/assets/semposte.png";
-import heroImage2 from "@/assets/hero-wine-elegant.jpg";
-import heroImage3 from "@/assets/hero-restaurant.jpg";
+import heroImage1 from "@/assets/foto-1.png";
+import heroImage2 from "@/assets/foto-2.png";
+import heroImage3 from "@/assets/foto-3.png";
 
 const heroImages = [heroImage1, heroImage2, heroImage3];
 
